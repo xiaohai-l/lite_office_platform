@@ -1,4 +1,4 @@
-package io.github.xiaohai.lite_office_platform.commom;
+package io.github.xiaohai.lite_office_platform.common;
 
 public class Result<T> {
     private Integer code; // 状态码：200成功，其他数字代表各种错误

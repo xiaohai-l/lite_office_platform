@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public User findByUsername(String username) {
+    public User findByUsername(String username) {//User代表返回的是User类型的数据
         // 使用Optional优雅处理，找到返回用户，没找到返回null
         return userRepository.findByUsername(username).orElse(null);
     }
@@ -44,5 +44,5 @@ public class UserServiceImpl implements UserService {
         return !userRepository.existsByEmail(email);
     }
 
-    // 后续可以轻松添加其他业务方法，如分页查询、更新用户信息等
+
 }
