@@ -1,4 +1,4 @@
-package io.github.xiaohai.lite_office_platform.Service;
+package io.github.xiaohai.lite_office_platform.service;
 import io.github.xiaohai.lite_office_platform.entity.User;
 /**
  * 用户业务逻辑层接口
@@ -36,4 +36,19 @@ public interface UserService {
      * @return 可用返回true，不可用返回false
      */
     boolean isEmailAvailable(String email);
+
+    // 在 UserService.java 中添加
+    /**
+     * 根据用户ID查找用户
+     * @param id 用户ID
+     * @return 用户实体
+     */
+    User findById(Long id);
+
+    /**
+     * 更新用户信息（不包含密码）
+     * @param user 用户实体（包含要更新的字段）
+     * @return 更新后的用户实体
+     */
+    User updateUserProfile(User user);
 }

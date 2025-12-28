@@ -1,8 +1,8 @@
-package io.github.xiaohai.lite_office_platform.Service.imp1;
+package io.github.xiaohai.lite_office_platform.service.imp1;
 
 import io.github.xiaohai.lite_office_platform.entity.User;
 import io.github.xiaohai.lite_office_platform.repository.UserRepository;
-import io.github.xiaohai.lite_office_platform.Service.UserService;
+import io.github.xiaohai.lite_office_platform.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -42,6 +42,34 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isEmailAvailable(String email) {
         return !userRepository.existsByEmail(email);
+    }
+
+    // 在 UserServiceImpl.java 中添加方法实现
+    @Override
+    public User findById(Long id) {
+        return userRepository.findById(id) // JPA内置方法，返回Optional
+                .orElseThrow(() -> new RuntimeException("用户不存在"));
+    }
+
+    @Override
+    public User updateUserProfile(User updatedUser) {
+        // 1. 从数据库查出当前用户
+        User existingUser = findById(updatedUser.getId());
+
+        // 2. 只更新允许修改的字段（避免更新用户名、密码等敏感字段）
+        if (updatedUser.getNickname() != null) {
+            existingUser.setNickname(updatedUser.getNickname());
+        }
+        if (updatedUser.getEmail() != null) {
+            // 这里可以添加邮箱格式验证和唯一性检查
+            existingUser.setEmail(updatedUser.getEmail());
+        }
+        if (updatedUser.getAvatar() != null) {
+            existingUser.setAvatar(updatedUser.getAvatar());
+        }
+
+        // 3. 保存更新（updateTime会自动更新，因为我们在实体类中加了@UpdateTimestamp）
+        return userRepository.save(existingUser);
     }
 
 

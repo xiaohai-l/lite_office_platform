@@ -1,8 +1,7 @@
 package io.github.xiaohai.lite_office_platform.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.xiaohai.lite_office_platform.common.Result;
-import io.github.xiaohai.lite_office_platform.common.Result;
+import io.github.xiaohai.lite_office_platform.common.R;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -69,7 +68,7 @@ public class SecurityConfig {
                                                 HttpServletResponse response,
                                                 Authentication authentication) throws IOException {
                 response.setContentType("application/json;charset=UTF-8");
-                String result = objectMapper.writeValueAsString(Result.success("登录成功"));
+                String result = objectMapper.writeValueAsString(R.success("登录成功"));
                 response.getWriter().write(result);
             }
         };
@@ -85,7 +84,7 @@ public class SecurityConfig {
                                                 AuthenticationException exception) throws IOException {
                 response.setContentType("application/json;charset=UTF-8");
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                String result = objectMapper.writeValueAsString(Result.error(401, "用户名或密码错误"));
+                String result = objectMapper.writeValueAsString(R.error(401, "用户名或密码错误"));
                 response.getWriter().write(result);
             }
         };
@@ -100,7 +99,7 @@ public class SecurityConfig {
                                         HttpServletResponse response,
                                         Authentication authentication) throws IOException {
                 response.setContentType("application/json;charset=UTF-8");
-                String result = objectMapper.writeValueAsString(Result.success("退出成功"));
+                String result = objectMapper.writeValueAsString(R.success("退出成功"));
                 response.getWriter().write(result);
             }
         };
