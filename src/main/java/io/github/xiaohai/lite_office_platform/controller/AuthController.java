@@ -64,7 +64,7 @@ public class AuthController {
      * POST /api/auth/login
      * 注意：这个接口的实际认证工作是由Spring Security的过滤器链完成的。
      * 我们配置的 .loginProcessingUrl("/api/auth/login") 会拦截此请求进行认证。
-     * 认证成功或失败后，会跳转到我们第4步配置的 successHandler 或 failureHandler。
+     * 认证成功或失败后，会跳转到successHandler 或 failureHandler。
      * 因此，这个控制器方法理论上不会被直接调用，它是一个"声明"或备用路径。
      * 但为了API文档的完整性，我们通常还是会保留它。
      */
