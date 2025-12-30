@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 //JPA自带CRUD功能，即读写改查
 //本接口用来声明查找用户，和用户名、邮箱判空功能
-//JPA的命名规则采用find。。。by，或者existsby
+//JPA的命名规则采用find。。。by，或者exists。。。by
 @Repository // 标识这是一个Spring的数据仓库Bean，可省略，但显式声明更清晰，告诉编译器从bean里面选择
 public interface UserRepository extends JpaRepository<User, Long> { // <实体类型, 主键类型>
 

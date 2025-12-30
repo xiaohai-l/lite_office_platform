@@ -1,4 +1,4 @@
-package io.github.xiaohai.lite_office_platform.service.imp1;
+package io.github.xiaohai.lite_office_platform.service.impl;
 
 import io.github.xiaohai.lite_office_platform.entity.User;
 import io.github.xiaohai.lite_office_platform.repository.UserRepository;

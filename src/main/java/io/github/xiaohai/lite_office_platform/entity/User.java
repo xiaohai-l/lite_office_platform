@@ -35,5 +35,10 @@ public class User {
     @UpdateTimestamp //  Hibernate注解，在更新时自动设置为当前时间
     private LocalDateTime updateTime;
 
+    // 链接department表
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dept_id") // 数据库中的部门ID字段
+    private Department department; // 所属部门
+
 
 }
