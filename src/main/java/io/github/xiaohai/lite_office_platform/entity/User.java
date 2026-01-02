@@ -6,6 +6,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 //import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "sys_user")
 @Data
@@ -40,5 +43,12 @@ public class User {
     @JoinColumn(name = "dept_id") // 数据库中的部门ID字段
     private Department department; // 所属部门
 
+    @ManyToMany(fetch = FetchType.EAGER) // 急加载，登录时就需要角色权限信息
+    @JoinTable(
+            name = "sys_user_role", // 关联表名
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles = new ArrayList<>();
 
 }
